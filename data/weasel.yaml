@@ -1,0 +1,76 @@
+# Weasel settings for TriFecta (Windows port)
+# encoding: utf-8
+#
+# This is the candidate-window UI style. The three-color TriFecta grouping is
+# drawn by the modified WeaselPanel regardless of the color scheme below; the
+# `~` state machine lives in the TSF key handler.
+
+config_version: "0.22"
+
+show_notifications: true
+show_notifications_time: 1200
+global_ascii: false
+
+style:
+  antialias_mode: default
+  ascii_tip_follow_cursor: false
+  color_scheme: aqua
+  font_face: Microsoft YaHei
+  label_font_face: Microsoft YaHei
+  comment_font_face: Microsoft YaHei
+  font_point: 14
+  label_font_point: 14
+  comment_font_point: 14
+  candidate_abbreviate_length: 0
+  click_to_capture: false
+  horizontal: true        # linear candidate bar (matches macOS squirrel)
+  fullscreen: false
+  inline_preedit: true
+  preedit_type: composition
+  display_tray_icon: false
+  label_format: "%s."
+  mark_text: ""
+  hover_type: none
+  paging_on_scroll: false
+  vertical_auto_reverse: false
+  vertical_text: false
+  vertical_text_left_to_right: false
+  vertical_text_with_wrap: false
+  layout:
+    align_type: center
+    max_width: 0
+    min_width: 160
+    min_height: 0
+    max_height: 0
+    border_width: 3
+    margin_x: 12
+    margin_y: 12
+    spacing: 10
+    candidate_spacing: 5
+    hilite_spacing: 4
+    hilite_padding: 2
+    round_corner: 8
+    corner_radius: 8
+    shadow_radius: 0
+    shadow_offset_x: 4
+    shadow_offset_y: 4
+    linespacing: 0
+    baseline: 0
+
+preset_color_schemes:
+  aqua:
+    name: 碧水／Aqua
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xeceeee
+    shadow_color: 0x00000000
+    border_color: 0xe0e0e0
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xd4d4d4
+    hilited_shadow_color: 0x00000000
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0xfa3a0a
+    hilited_candidate_shadow_color: 0x00000000
+    candidate_text_color: 0x000000
+    candidate_back_color: 0xeceeee
+    candidate_shadow_color: 0x00000000
