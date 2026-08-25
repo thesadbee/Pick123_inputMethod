@@ -56,9 +56,9 @@ Notes
 - If Pick123 doesn't appear in the language bar, run `install.bat` again.
 - This app writes system registry (HKLM) to register the IME; install as admin.
 - Uninstall:
-  - Removing the folder alone does not remove the IME from the language bar.
-  - To fully remove, run `WeaselSetupx64.exe /u` (from this folder), then delete
-    this folder, and optionally clean `%APPDATA%\Rime`.
+  - Run `uninstall.bat` (as administrator) to stop the server, unregister the
+    IME from the language bar, and remove the registry entries.
+  - Then delete this folder. Optionally clean `%APPDATA%\Rime`.
 
 Troubleshooting
 ---------------

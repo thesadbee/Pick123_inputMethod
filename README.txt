@@ -41,9 +41,8 @@ Pick123_inputMethod 是一款基于小狼毫（Weasel / RIME）引擎的 Windows
   * 若语言栏看不到 Pick123，请重新运行 install.bat 后再试。
   * 本应用会写系统注册表（HKLM）以注册输入法，请以管理员身份安装。
   * 卸载说明：
-       - 便携版只删文件夹不会自动从语言栏移除输入法。
-       - 如需彻底移除，请运行 WeaselSetupx64.exe /u（配合本文件夹），再删除此文件夹，
-         并视需要清理 %APPDATA%\Rime。
+       - 运行 uninstall.bat（以管理员身份）停止服务、从语言栏移除输入法并清除注册表。
+       - 然后删除本文件夹；Rime 用户数据在 %APPDATA%\Rime（如不再需要可一并删除）。
 
 排错
 ----
