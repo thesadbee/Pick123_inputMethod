@@ -5,93 +5,79 @@
 
 # Pick123_inputMethod
 
-A Windows Chinese input method built on the 小狼毫 (Weasel / RIME) engine.
+一款基于小狼毫（Weasel / RIME）引擎的 Windows 中文输入法。
 
-> This version shows as "小狼毫 / Weasel" in the system language bar / keyboard
-> list (internal name) for technical compatibility. **Pick123** is the product
-> name used for release, docs, and recognition; a future version will rename the
-> UI strings to Pick123.
+> 说明：出于技术兼容，本版本在系统「语言栏 / 键盘列表」里仍显示为“小狼毫 / Weasel”（内部名称），
+> 产品名 **Pick123** 用于发布、文档与识别。后续版本将把界面显示名同步改为 Pick123。
 
-Features
---------
-- **Three-colour grouping**: press the trigger key to enter, `1/2/3` to choose a
-  group, then `1/2/3` to choose a candidate, and it auto-returns to normal mode.
-- **Slider mode**: the three colour slots stay fixed at the front; the trigger
-  key slides the whole row left, the reverse key slides it right, and `1/2/3`
-  selects the pressed word directly.
-- **Fully customisable**: trigger key, selection keys (1/2/3), the three colours,
-  and the slider reverse key — all adjustable in the control panel, apply
-  immediately.
-- **Cross-page candidates**: automatically pages when there are many candidates.
+## 特性
 
-Installation
-------------
-1. Extract this archive to a folder without Chinese characters/spaces (e.g. `D:\Pick123`).
-2. Right-click `install.bat` and choose "Run as administrator".
-   (If you don't run it as admin it will prompt the UAC dialog automatically.)
-   The script then does three steps automatically:
-   - (a) `WeaselDeployer /install` — deploy Rime data to `%APPDATA%\Rime`;
-   - (b) `WeaselSetupx64 /s` — register the IME into the keyboard layout / language bar;
-   - (c) start the `WeaselServer` service.
-   Wait for the script to print "install finished".
-3. Log out / reboot once so Windows loads the newly-registered IME DLL.
-4. Add Pick123 to the language bar:
-   - Windows 11: Settings -> Time & Language -> Language & region -> your language
-     -> ... -> Language options -> Add a keyboard.
-   - Windows 10: Settings -> Time & Language -> Language -> Chinese (Simplified)
-     -> Options -> Add a keyboard.
-   Choose "小狼毫 / Weasel" in the list.
-5. Switch to Pick123 with `Ctrl+Space` or `Win+Space` and start typing.
+- **三色分组**：按下触发键进入，`1/2/3` 选组，再 `1/2/3` 选字，完成后自动回到普通模式。
+- **滑块模式**：三个颜色槽固定在前 3 位；触发键整行左移、反向键右移，`1/2/3` 直接选词。
+- **完全可自定义**：触发键、选取键(1/2/3)、三色颜色、滑块反向键，均可在控制面板调整，保存即生效。
+- **跨页候选**：候选较多时自动翻页，可一路看到后面的候选。
 
-Usage
------
-- Click the「小狼毫」tray icon to open the settings menu.
-- The three-colour / slider toggle, trigger key, colours, `1/2/3` keys and
-  reverse key are all in the "input method settings" window; save to apply.
+## 安装步骤
 
-Notes
------
-- You must log out / reboot once after install, or the new DLL won't load and the
-  language bar may not show it.
-- If Pick123 doesn't appear in the language bar, run `install.bat` again.
-- This app writes system registry (HKLM) to register the IME; install as admin.
-- Uninstall:
-  - Run `uninstall.bat` (as administrator) to stop the server, unregister the
-    IME from the language bar, and remove the registry entries.
-  - Then delete this folder. Optionally clean `%APPDATA%\Rime`.
+1. 解压本 zip 到一个不含中文/空格的目录（如 `D:\Pick123`）。
+2. 右键 `install.bat`，选择「以管理员身份运行」。
+   （若未以管理员运行，脚本会自动弹出 UAC 请求，点击“是”即可。）
+   脚本会自动完成三步：
+   - (a) `WeaselDeployer /install` 部署 Rime 数据到 `%APPDATA%\Rime`；
+   - (b) `WeaselSetupx64 /s` 把输入法注册进系统键盘布局/语言栏；
+   - (c) 启动 `WeaselServer` 服务。
+   请等待脚本显示 "install finished"。
+3. 注销或重启一次（让系统加载新注册的输入法 DLL）。
+4. 把 Pick123 加入语言栏：
+   - Windows 11：设置 -> 时间和语言 -> 语言和区域 -> 你的语言 -> ... -> 语言选项 -> 添加键盘。
+   - Windows 10：设置 -> 时间和语言 -> 语言 -> 中文(简体) -> 选项 -> 添加键盘。
+   在列表中选择“小狼毫 / Weasel”。
+5. 用 `Ctrl+空格` 或 `Win+空格` 切换到 Pick123 即可输入。
+6. 三色/滑块开关、触发键、颜色、1/2/3 键、反向键在任务栏小狼毫图标的「输入法设定」里调整。
 
-Troubleshooting
----------------
-- Install failed / no candidates: check `install.log` in this folder.
-- No candidates out: confirm you logged out / rebooted and `WeaselServer.exe` is running.
-- Full reset: delete `%APPDATA%\Rime` and re-run `install.bat`.
-- "cannot find xx.dll": ensure the zip was fully extracted, not just a single exe.
+## 使用提示
 
-Contributors
-============
+- 单击任务栏「小狼毫」图标可打开设置菜单。
+- 三色分组 / 滑块开关、触发键、颜色、1/2/3 键、反向键都在「输入法设定」窗口里调整，保存即生效。
 
-Open-source projects used
--------------------------
-This project is built on the following open-source projects. Thanks to their
-authors and communities:
-- **RIME / 中州韵 input method engine** — https://rime.im (librime; input engine and candidate logic)
-- **小狼毫 Weasel** — https://github.com/rime/weasel (Windows IM framework, TSF, candidate window)
-- **Boost C++ Libraries** — https://www.boost.org (boost serialization / data structures)
-- **7-Zip** — https://www.7-zip.org (packing / extraction)
-- **cURL** — https://curl.se (download / network support)
-- **WinSparkle** — https://winsparkle.org (auto-update)
+## 注意事项
 
-Development & build tools
--------------------------
-This project was assisted in development and build by **DeepSeek Harness**
-(deepseek-harness), including the code implementation and debugging of the
-three-colour grouping, slider mode, cross-page candidates and control panel.
+- 首次安装后必须注销/重启一次，TSF 才会加载新的 DLL；否则语言栏可能不出现。
+- 若语言栏看不到 Pick123，请重新运行 `install.bat` 后再试。
+- 本应用会写系统注册表（HKLM）以注册输入法，请以管理员身份安装。
+- 卸载：
+  - 运行 `uninstall.bat`（以管理员身份）停止服务、从语言栏移除输入法、并清除注册表。
+  - 然后删除本文件夹；如需彻底清理，再删除 `%APPDATA%\Rime`。
 
-Douyin (TikTok) user ideas
---------------------------
-The following Douyin users contributed ideas for this project's Windows version:
-- Thanks to @陈晨, @zeeshee, @暮水 for suggesting new name references for the Windows version;
-- Thanks to @lvs, @禾O看世界, @林青衣, @风渐渐 for the slider-mode idea;
-- Thanks to @1fei for suggesting customised digit-mapping keys;
-- Thanks to @在下雨 for suggesting custom three-colour customisation;
-- Thanks to @McFlurry for suggesting making the secondary menu look cleaner.
+## 排错
+
+- 安装失败/未出候选：查看本目录 `install.log`。
+- 输入法不出字：确认已注销/重启，且 `WeaselServer.exe` 正在运行。
+- 想完全重置：删除 `%APPDATA%\Rime` 后重新运行 `install.bat`。
+- 若报“找不到 xx.dll”：请确认解压完整，不要只拷出单个 exe。
+
+## Contributors / 致谢
+
+### 使用的开源项目
+
+本项目基于以下开源项目构建，向其作者与社区致谢：
+- **RIME / 中州韵输入法引擎** — https://rime.im （librime，本项目输入引擎与候选逻辑基础）
+- **小狼毫 Weasel** — https://github.com/rime/weasel （Windows 输入法框架、TSF、候选窗）
+- **Boost C++ 库** — https://www.boost.org （本项目使用 boost 序列化/数据结构）
+- **7-Zip** — https://www.7-zip.org （用于打包/解压）
+- **cURL** — https://curl.se （本项目的下载/网络支持）
+- **WinSparkle** — https://winsparkle.org （本项目的自动更新）
+
+### 开发与构建工具
+
+本项目由 **DeepSeek Harness**（deepseek-harness）辅助完成开发与构建，
+包括三色分组、滑块模式、跨页候选、控制面板等功能的代码实现与调试。
+
+### 抖音用户创意
+
+以下抖音用户为本项目 Windows 版的功能提供了创意：
+- 感谢 @陈晨、@zeeshee、@暮水 三位用户为本项目的 Windows 版提出了新的名称参考；
+- 感谢 @lvs、@禾O看世界、@林青衣、@风渐渐 提供了滑块模式的思路；
+- 感谢 @1fei 提出了自定义数字映射按键的改进方向；
+- 感谢 @在下雨 提出了自定义“三色”颜色的改进方向；
+- 感谢 @McFlurry 提出了让二级菜单看上去更简洁明了的改进方向。
