@@ -27,11 +27,15 @@ call "%~dp0stop_service.bat" >> "%LOG%" 2>&1
 
 echo [%date% %time%] step1: WeaselDeployer /install (deploy data)... >> "%LOG%"
 "%~dp0WeaselDeployer.exe" /install >> "%LOG%" 2>&1
-echo [%date% %time%] after deploy exit=%errorlevel% >> "%LOG%"
+set DEPLOY_EXIT=%errorlevel%
+echo [%date% %time%] after deploy exit=%DEPLOY_EXIT% >> "%LOG%"
+if not "%DEPLOY_EXIT%"=="0" goto deploy_failed
 
 echo [%date% %time%] step2: WeaselSetupx64 /s (register IME into language bar)... >> "%LOG%"
 "%~dp0WeaselSetupx64.exe" /s >> "%LOG%" 2>&1
-echo [%date% %time%] after setup exit=%errorlevel% >> "%LOG%"
+set SETUP_EXIT=%errorlevel%
+echo [%date% %time%] after setup exit=%SETUP_EXIT% >> "%LOG%"
+if not "%SETUP_EXIT%"=="0" goto setup_failed
 
 echo [%date% %time%] step3: start server... >> "%LOG%"
 start "" "%~dp0WeaselServer.exe"
@@ -48,6 +52,24 @@ echo ============================================================
 echo.
 pause
 exit /b 0
+
+:deploy_failed
+echo [%date% %time%] ERROR: deploy failed with exit=%DEPLOY_EXIT% >> "%LOG%"
+echo.
+echo ERROR: WeaselDeployer.exe /install failed with exit code %DEPLOY_EXIT%.
+echo Installation stopped. See install.log in this folder for details.
+echo.
+pause
+exit /b %DEPLOY_EXIT%
+
+:setup_failed
+echo [%date% %time%] ERROR: setup failed with exit=%SETUP_EXIT% >> "%LOG%"
+echo.
+echo ERROR: WeaselSetupx64.exe /s failed with exit code %SETUP_EXIT%.
+echo Installation stopped. See install.log in this folder for details.
+echo.
+pause
+exit /b %SETUP_EXIT%
 
 :elevate
 echo [%date% %time%] Not admin, requesting elevation... >> "%LOG%"

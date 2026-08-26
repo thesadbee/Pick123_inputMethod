@@ -25,7 +25,9 @@ call "%~dp0stop_service.bat" >> "%LOG%" 2>&1
 
 echo [%date% %time%] unregister IME/TSF (WeaselSetupx64 /u)... >> "%LOG%"
 "%~dp0WeaselSetupx64.exe" /u >> "%LOG%" 2>&1
-echo [%date% %time%] after setup /u exit=%errorlevel% >> "%LOG%"
+set UNREGISTER_EXIT=%errorlevel%
+echo [%date% %time%] after setup /u exit=%UNREGISTER_EXIT% >> "%LOG%"
+if not "%UNREGISTER_EXIT%"=="0" goto unregister_failed
 
 echo [%date% %time%] removing registry keys... >> "%LOG%"
 reg delete "HKLM\Software\Rime" /f >> "%LOG%" 2>&1
@@ -46,6 +48,15 @@ echo ============================================================
 echo.
 pause
 exit /b 0
+
+:unregister_failed
+echo [%date% %time%] ERROR: unregister failed with exit=%UNREGISTER_EXIT% >> "%LOG%"
+echo.
+echo ERROR: WeaselSetupx64.exe /u failed with exit code %UNREGISTER_EXIT%.
+echo Uninstall stopped. See uninstall.log in this folder for details.
+echo.
+pause
+exit /b %UNREGISTER_EXIT%
 
 :elevate
 echo [%date% %time%] Not admin, requesting elevation... >> "%LOG%"
