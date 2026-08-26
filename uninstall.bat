@@ -62,13 +62,11 @@ exit /b %UNREGISTER_EXIT%
 echo [%date% %time%] Not admin, requesting elevation... >> "%LOG%"
 echo Requesting administrator privileges... A UAC prompt should appear.
 echo If it does NOT, right-click this file and choose "Run as administrator".
-if "%*%"=="" (
-  powershell -NoProfile -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+if "%*"=="" (
+  powershell -NoProfile -Command "$p = Start-Process -FilePath '%~f0' -Verb RunAs -Wait -PassThru; exit $p.ExitCode"
 ) else (
-  powershell -NoProfile -Command "Start-Process -FilePath '%~f0' -ArgumentList '%*%' -Verb RunAs"
+  powershell -NoProfile -Command "$p = Start-Process -FilePath '%~f0' -ArgumentList '%*' -Verb RunAs -Wait -PassThru; exit $p.ExitCode"
 )
-echo [%date% %time%] Elevation launched. >> "%LOG%"
-echo.
-echo Launching elevated instance. Watch the NEW elevated window.
-pause
-exit /b 0
+set ELEVATED_EXIT=%errorlevel%
+echo [%date% %time%] Elevated instance exit=%ELEVATED_EXIT% >> "%LOG%"
+exit /b %ELEVATED_EXIT%
